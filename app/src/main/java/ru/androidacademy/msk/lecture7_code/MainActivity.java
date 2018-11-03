@@ -10,7 +10,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MessageFragment messageFragment = new MessageFragment();
+        MessageFragment messageFragment =
+            MessageFragment.newInstance("Hello :D");
 
         getSupportFragmentManager()
             .beginTransaction()

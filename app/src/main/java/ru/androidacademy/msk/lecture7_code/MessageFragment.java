@@ -10,6 +10,17 @@ import android.widget.TextView;
 
 public class MessageFragment extends Fragment {
 
+    private static final String ARGS_MESSAGE = "args:message";
+
+    public static MessageFragment newInstance(String message) {
+        MessageFragment messageFragment = new MessageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARGS_MESSAGE, message);
+        messageFragment.setArguments(bundle);
+
+        return messageFragment;
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -19,7 +30,10 @@ public class MessageFragment extends Fragment {
             container, false);
 
         TextView textView = view.findViewById(R.id.fragment_message_text);
-        textView.setText("I am a Fragment");
+        if  (getArguments() != null) {
+            String message = getArguments().getString(ARGS_MESSAGE);
+            textView.setText(message);
+        }
 
         return view;
     }
