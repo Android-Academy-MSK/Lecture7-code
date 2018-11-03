@@ -9,5 +9,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MessageFragment messageFragment = new MessageFragment();
+
+        getSupportFragmentManager()
+            .beginTransaction()
+            .add(R.id.activity_main_frame, messageFragment)
+            .commit();
+
     }
 }
