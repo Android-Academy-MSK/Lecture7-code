@@ -10,13 +10,14 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MessageFragment messageFragment =
-            MessageFragment.newInstance("Hello :D");
+        if (savedInstanceState == null) {
+            SomeFragment someFragment = new SomeFragment();
 
-        getSupportFragmentManager()
-            .beginTransaction()
-            .add(R.id.activity_main_frame, messageFragment)
-            .commit();
+            getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.activity_main_frame, someFragment)
+                .commit();
+        }
 
     }
 
