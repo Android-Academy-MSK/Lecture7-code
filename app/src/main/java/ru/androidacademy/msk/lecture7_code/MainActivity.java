@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements MessageFragmentListener {
 
+    private static final String SOME_TAG = "some_tag";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
 
             getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.activity_main_frame, someFragment)
+                .add(R.id.activity_main_frame, someFragment, SOME_TAG)
                 .commit();
         }
 
@@ -27,9 +29,11 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
             MessageFragment.newInstance("WORLD !!!");
 
         getSupportFragmentManager()
-            .beginTransaction()
-            .add(R.id.activity_main_frame, messageFragment)
-            .commit();
+            .findFragmentByTag(SOME_TAG)
+            .getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_some_frame, messageFragment)
+                .commit();
     }
 
 }
